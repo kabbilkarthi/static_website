@@ -3,63 +3,171 @@
 <head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kabbil | Portfolio</title>   
+    <title>Kabbil | Site Reliability Engineer Portfolio</title>   
     <style>
         body {
-            font-family: consolas;
+            font-family: Consolas, monospace;
             margin: 0;
             padding: 0;
             line-height: 1.6;
-            background-color: #f9f9f9;
+            background-color: #f4f6f8;
             color: #333;
         }
+
         header {
             text-align: center;
-            background: #222;
+            background: #1f2937;
             color: white;
-            padding: 10px;
+            padding: 20px 15px;
         }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        header p {
+            margin: 8px 0 0;
+            font-size: 1rem;
+            color: #d1d5db;
+        }
+
         #banner {
             width: 100%;
             height: 300px;
             object-fit: cover; 
+            display: block;
         }
+
         section {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 20px;
+            max-width: 950px;
+            margin: 25px auto;
+            padding: 22px;
             background: white;
-            border-radius: 10px;
-            box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            box-shadow: 0px 3px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
+        section:hover {
+            transform: translateY(-4px);
+            box-shadow: 0px 6px 16px rgba(0,0,0,0.12);
+        }
+
         h2 {
             margin-top: 0;
-            color: #444;
+            color: #1f2937;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 8px;
         }
-        footer {
-            text-align: center;
-            padding: 15px;
-            background: #222;
-            color: white;
-            margin-top: 30px;
+
+        h3 {
+            margin-bottom: 8px;
+            color: #111827;
         }
+
+        p {
+            margin: 10px 0;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
         .btn {
             display: inline-block;
             background: #0077cc;
             color: white;
             padding: 10px 20px;
-            border-radius: 5px;
+            border-radius: 6px;
             text-decoration: none;
             margin-top: 10px;
+            font-weight: bold;
         }
+
         .btn:hover {
             background: #005fa3;
+        }
+
+        .highlight {
+            background: #f9fafb;
+            border-left: 5px solid #0077cc;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-card {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .project-card {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 16px;
+        }
+
+        .project-card a {
+            color: #0077cc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .project-card a:hover {
+            text-decoration: underline;
+        }
+
+        .links a {
+            color: #0077cc;
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: #1f2937;
+            color: white;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.6rem;
+            }
+
+            #banner {
+                height: 220px;
+            }
+
+            section {
+                margin: 18px 12px;
+                padding: 18px;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <p>Hi, I'm <b>Kabbil</b> — IT Enthusiast & (SRE) Linux Admin</p>
+        <h1>Hi, I'm Kabbil</h1>
+        <p>Site Reliability Engineer | Linux | Automation | Cloud</p>
     </header>
 
     <img id="banner" src="banner.jpg" alt="Banner Image">
@@ -67,39 +175,164 @@
     <section>
         <h2>About Me</h2>
         <p>
-            I’m passionate about technology, coding, and building impactful projects.  
-            Over time, I’ve specialized in <b>Linux Administration</b> and grown into the world of <b>SRE</b> and <b>DevOps</b>.  
+            I am a Site Reliability Engineer and Linux Administrator with hands-on experience in 
+            production support, system reliability, infrastructure automation, and operational troubleshooting.
         </p>
         <p>
-            I work with <b>Python</b>, <b>Bash</b>, <b>Docker</b>, <b>Ansible</b>, and <b>CI/CD pipelines</b>.  
+            My focus is on building reliable systems, automating repetitive operational tasks, improving deployment workflows,
+            and strengthening system stability across Linux and cloud environments.
         </p>
         <p>
-            Connect with me on <a href="https://www.linkedin.com/in/kabbil" target="_blank">LinkedIn</a>.
+            I work with <b>Linux</b>, <b>Ansible</b>, <b>Bash</b>, <b>Python</b>, <b>Docker</b>, and <b>CI/CD pipelines</b>,
+            with growing exposure to <b>SRE</b>, <b>DevOps</b>, and <b>cloud operations</b>.
+        </p>
+        <p class="links">
+            <a href="https://www.linkedin.com/in/kabbil" target="_blank">LinkedIn</a>
+            <a href="https://github.com/kabbilkarthi" target="_blank">GitHub</a>
         </p>
         <p>
-            <a href="Kabbil_GI_Resume.pdf" class="btn" download="kabbil_GI_Resume.pdf">Download My Resume</a>
+            <a href="Kabbil_GI_Resume.pdf" class="btn" download="Kabbil_GI_Resume.pdf">Download My Resume</a>
         </p>
+    </section>
 
+    <section class="highlight">
+        <h2>Featured Project</h2>
+        <h3>Centralized Infrastructure Provisioning using PXE, Kickstart, Local Repositories, and Ansible Pull</h3>
+        <p>
+            Built a centralized provisioning workflow inspired by enterprise deployment models, where multiple systems
+            can be installed and configured automatically from a single control node.
+        </p>
+        <p>
+            This project uses <b>PXE Boot</b> for network-based OS installation, <b>Kickstart</b> for unattended deployment,
+            <b>local HTTP repositories</b> for controlled package access, and <b>Ansible Pull</b> for post-install configuration.
+        </p>
+        <p>
+            It helped reduce manual provisioning effort and enabled <b>consistent, repeatable, and scalable infrastructure deployment workflows</b>
+            across lab systems running <b>RHEL 8.3</b> and <b>RHEL 10</b>.
+        </p>
+        <p>
+            <b>Tech Stack:</b> RHEL 8/10, PXE, DHCP, TFTP, Kickstart, HTTP Repo, Ansible Pull, Bash
+        </p>
+        <p>
+            <a href="https://github.com/kabbilkarthi" target="_blank" class="btn">View Project on GitHub</a>
+        </p>
     </section>
 
     <section>
-        <h2>Projects</h2>	
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Operating Systems</h3>
+                <p>Linux Administration, RHEL 8/10, System Troubleshooting, Patch Management</p>
+            </div>
+            <div class="skill-card">
+                <h3>Automation</h3>
+                <p>Ansible, Bash, Python, Infrastructure Automation, Configuration Management</p>
+            </div>
+            <div class="skill-card">
+                <h3>Cloud & Platforms</h3>
+                <p>Azure, AWS, VMware, Virtual Machines, Production Support</p>
+            </div>
+            <div class="skill-card">
+                <h3>Containers & CI/CD</h3>
+                <p>Docker, Jenkins, DevOps Pipelines, Deployment Workflows</p>
+            </div>
+            <div class="skill-card">
+                <h3>Monitoring & Operations</h3>
+                <p>Zabbix, Incident Handling, RCA, System Reliability, High Availability</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>What I Focus On</h2>
         <ul>
-            <li><a href="https://github.com/kabbilkarthi/Own_Website" target="_blank">Personal Portfolio Website – Built with Flask & MySQL </a><b>(NOW STATIC!)</b></li>
-            <li><a href="https://github.com/kabbilkarthi/Azure-DevOps" target="_blank">Azure DevOps Project</a></li>
-            <li><a href="https://github.com/kabbilkarthi/DevOps" target="_blank">DevOps Project Using Jenkins Pipeline</a></li>
-            <li><a href="https://github.com/kabbilkarthi/Python" target="_blank">Data Extraction & Manipulation Scripts</a></li>
-            <li><a href="https://github.com/kabbilkarthi/linux/tree/main/NAS_Mount" target="_blank">NAS Share Mounting Script</a></li>
+            <li>Building reliable and stable Linux-based systems</li>
+            <li>Automating repetitive infrastructure and operational tasks</li>
+            <li>Improving provisioning and deployment workflows</li>
+            <li>Supporting production environments with faster troubleshooting and recovery</li>
+            <li>Learning and applying SRE practices for visibility, reliability, and operational excellence</li>
         </ul>
+    </section>
+
+    <section>
+        <h2>🆕 Recent Work</h2>
+        <ul>
+            <li>Built a lab-based centralized provisioning setup using PXE Boot, Kickstart, and Ansible Pull</li>
+            <li>Configured local repositories to support controlled package installation for RHEL systems</li>
+            <li>Worked on Linux system administration tasks including troubleshooting, patching, and configuration changes</li>
+            <li>Explored automation-driven workflows to reduce manual effort and improve consistency</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Projects</h2>
+
+        <div class="project-card">
+            <h3>Centralized Infrastructure Provisioning Lab</h3>
+            <p>
+                Automated operating system deployment and post-install configuration using PXE Boot, Kickstart,
+                local repositories, and Ansible Pull in a centralized setup.
+            </p>
+            <p><b>Key Areas:</b> Linux, Provisioning, DHCP, TFTP, Automation, RHEL</p>
+            <a href="https://github.com/kabbilkarthi/rhel-centralized-provisioning" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h3>Personal Portfolio Website</h3>
+            <p>
+                Built and maintained a personal portfolio website to showcase projects, certifications,
+                technical skills, and engineering work. Initially built with Flask and MySQL and later converted to a static site.
+            </p>
+            <p><b>Key Areas:</b> HTML, CSS, Flask, MySQL</p>
+            <a href="https://github.com/kabbilkarthi/Own_Website" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h3>DevOps Project Using Jenkins Pipeline</h3>
+            <p>
+                Worked on CI/CD-based workflow automation using Jenkins pipelines to support repeatable build and deployment processes.
+            </p>
+            <p><b>Key Areas:</b> Jenkins, CI/CD, Automation</p>
+            <a href="https://github.com/kabbilkarthi/DevOps" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h3>Azure DevOps Project</h3>
+            <p>
+                Explored Azure-based DevOps workflows and deployment practices with focus on automation,
+                cloud operations, and release process understanding.
+            </p>
+            <p><b>Key Areas:</b> Azure, DevOps, Cloud</p>
+            <a href="https://github.com/kabbilkarthi/Azure-DevOps" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h3>Data Extraction & Manipulation Scripts</h3>
+            <p>
+                Built Python-based scripts for data extraction, processing, and routine task automation.
+            </p>
+            <p><b>Key Areas:</b> Python, Automation, Scripting</p>
+            <a href="https://github.com/kabbilkarthi/Python" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h3>NAS Share Mounting Script</h3>
+            <p>
+                Created a Linux automation script to simplify NAS share mounting and reduce repetitive manual steps.
+            </p>
+            <p><b>Key Areas:</b> Linux, Bash, Storage, Automation</p>
+            <a href="https://github.com/kabbilkarthi/linux/tree/main/NAS_Mount" target="_blank">View Project</a>
+        </div>
     </section>
 
     <section>
         <h2>Certifications</h2>
         <ul>
             <li><a href="https://learn.microsoft.com/en-us/users/kabbilgi-1299/credentials/certification/devops-engineer?tab=credentials-tab" target="_blank">Microsoft Certified: DevOps Engineer Expert</a></li>
-            <li><a href="https://www.credly.com/badges/f7cd4672-d21a-4971-84c5-f794cddb99f3/linked_in_profile" target="_blank">RedHat Certified Engineer</a></li>
+            <li><a href="https://www.credly.com/badges/f7cd4672-d21a-4971-84c5-f794cddb99f3/linked_in_profile" target="_blank">Red Hat Certified Engineer (RHCE)</a></li>
             <li><a href="https://learn.microsoft.com/en-us/users/kabbilgi-1299/credentials/certification/azure-administrator?tab=credentials-tab" target="_blank">Microsoft Certified: Azure Administrator Associate</a></li>
-            <li><a href="http://credly.com/badges/98926449-21cb-4f9d-a9f1-d27259d52fb3/public_url" target="_blank">RedHat Certified System Administrator</a></li>
+            <li><a href="http://credly.com/badges/98926449-21cb-4f9d-a9f1-d27259d52fb3/public_url" target="_blank">Red Hat Certified System Administrator (RHCSA)</a></li>
             <li><a href="https://www.credly.com/badges/270052c3-e480-4695-958a-058bc049a75b?source=linked_in_profile" target="_blank">Microsoft Certified: Azure Fundamentals</a></li>
             <li><a href="http://credly.com/badges/1afd523a-c7a4-4f10-92ec-09fc5b2af040/public_url" target="_blank">Microsoft Technology Associate: Python</a></li>
             <li><a href="https://www.coursera.org/account/accomplishments/verify/HN9ENTQLEVF4" target="_blank">Code Yourself! Introduction to Programming</a></li>
@@ -109,22 +342,15 @@
     <section>
         <h2>Fun Facts</h2>
         <ul>
-            <li>🕵️ I love to debug — breaking things just to fix them again</li>
-            <li>⌨️ My keyboard is louder than my thoughts 😅</li>
-            <li>🛠️ I explore new tools every month</li>
-            <li>🐧 Linux is my third language</li>
+            <li>🕵️ I enjoy troubleshooting and debugging production-like issues</li>
+            <li>⌨️ I like automating repetitive work to make systems easier to manage</li>
+            <li>🛠️ I explore new Linux, cloud, and automation tools regularly</li>
+            <li>🐧 Linux is where I feel most comfortable working and learning</li>
         </ul>
     </section>
 
     <footer>
-        <p>© 2025 Kabbil | Built with HTML & CSS</p>
+        <p>© 2026 Kabbil | Built with HTML & CSS</p>
     </footer>
 </body>
 </html>
-
-
-
-
-
-
-
