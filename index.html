@@ -1,181 +1,476 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kabbil | Site Reliability Engineer Portfolio</title>   
+    <title>Kabbil | Site Reliability Engineer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Consolas, monospace;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            background-color: #f4f6f8;
-            color: #333;
+        :root {
+            --bg: #0d1117;
+            --surface: #161b22;
+            --surface2: #21262d;
+            --border: #30363d;
+            --accent: #58a6ff;
+            --accent2: #3fb950;
+            --accent3: #f78166;
+            --text: #e6edf3;
+            --muted: #8b949e;
+            --heading-font: 'JetBrains Mono', monospace;
+            --body-font: 'Inter', sans-serif;
         }
 
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--body-font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* ── HEADER ── */
         header {
+            position: relative;
+            overflow: hidden;
+            padding: 60px 24px 50px;
             text-align: center;
-            background: #1f2937;
-            color: white;
-            padding: 20px 15px;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 40% at 50% -10%, rgba(88,166,255,0.12) 0%, transparent 70%),
+                repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(48,54,61,0.4) 40px),
+                repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(48,54,61,0.4) 40px);
+            pointer-events: none;
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: rgba(88,166,255,0.1);
+            border: 1px solid rgba(88,166,255,0.3);
+            color: var(--accent);
+            font-family: var(--heading-font);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
         }
 
         header h1 {
-            margin: 0;
-            font-size: 2rem;
+            font-family: var(--heading-font);
+            font-size: clamp(2.2rem, 5vw, 3.4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            position: relative;
+            z-index: 1;
         }
 
-        header p {
-            margin: 8px 0 0;
-            font-size: 1rem;
-            color: #d1d5db;
+        header h1 .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1em;
+            background: var(--accent);
+            margin-left: 4px;
+            vertical-align: text-bottom;
+            animation: blink 1.1s step-end infinite;
         }
 
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .header-sub {
+            font-family: var(--heading-font);
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin: 10px 0 28px;
+            letter-spacing: 0.04em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-sub .sep { color: var(--border); margin: 0 8px; }
+        .header-sub span { color: var(--accent2); }
+
+        /* tech logo pills */
+        .tech-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            z-index: 1;
+            margin-top: 10px;
+        }
+
+        .tech-pill {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 6px 14px;
+            font-size: 0.78rem;
+            font-family: var(--heading-font);
+            color: var(--muted);
+            transition: border-color 0.2s, color 0.2s, transform 0.2s;
+        }
+
+        .tech-pill:hover {
+            border-color: var(--accent);
+            color: var(--text);
+            transform: translateY(-2px);
+        }
+
+        .tech-pill svg { flex-shrink: 0; }
+
+        /* ── BANNER ── */
         #banner {
             width: 100%;
-            height: 300px;
-            object-fit: cover; 
+            height: 280px;
+            object-fit: cover;
             display: block;
+            opacity: 0.85;
+        }
+
+        /* ── SECTIONS ── */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
         section {
-            max-width: 950px;
-            margin: 25px auto;
-            padding: 22px;
-            background: white;
+            max-width: 960px;
+            margin: 28px auto;
+            padding: 28px 32px;
+            background: var(--surface);
+            border: 1px solid var(--border);
             border-radius: 12px;
-            box-shadow: 0px 3px 10px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: border-color 0.25s, transform 0.25s;
         }
 
         section:hover {
-            transform: translateY(-4px);
-            box-shadow: 0px 6px 16px rgba(0,0,0,0.12);
+            border-color: rgba(88,166,255,0.35);
+            transform: translateY(-3px);
+        }
+
+        section.highlight {
+            border-left: 3px solid var(--accent);
         }
 
         h2 {
-            margin-top: 0;
-            color: #1f2937;
-            border-bottom: 2px solid #e5e7eb;
-            padding-bottom: 8px;
+            font-family: var(--heading-font);
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text);
+            padding-bottom: 12px;
+            margin-bottom: 18px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        h2 .h2-icon {
+            font-size: 0.9rem;
         }
 
         h3 {
+            font-family: var(--heading-font);
+            font-size: 0.92rem;
+            color: var(--text);
             margin-bottom: 8px;
-            color: #111827;
         }
 
-        p {
-            margin: 10px 0;
-        }
+        p { color: var(--muted); font-size: 0.93rem; margin: 8px 0; }
+        p b { color: var(--text); font-weight: 500; }
 
-        ul {
-            padding-left: 20px;
-        }
-
-        li {
-            margin-bottom: 12px;
-        }
+        ul { padding-left: 20px; }
+        li { color: var(--muted); font-size: 0.93rem; margin-bottom: 10px; }
 
         .btn {
-            display: inline-block;
-            background: #0077cc;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: transparent;
+            color: var(--accent);
+            padding: 9px 20px;
+            border-radius: 8px;
             text-decoration: none;
-            margin-top: 10px;
-            font-weight: bold;
+            font-size: 0.83rem;
+            font-family: var(--heading-font);
+            font-weight: 600;
+            border: 1px solid rgba(88,166,255,0.4);
+            margin-top: 14px;
+            transition: background 0.2s, border-color 0.2s;
         }
 
-        .btn:hover {
-            background: #005fa3;
-        }
+        .btn:hover { background: rgba(88,166,255,0.1); border-color: var(--accent); }
+        .btn.green { color: var(--accent2); border-color: rgba(63,185,80,0.4); }
+        .btn.green:hover { background: rgba(63,185,80,0.1); border-color: var(--accent2); }
 
-        .highlight {
-            background: #f9fafb;
-            border-left: 5px solid #0077cc;
+        .links { margin: 14px 0 8px; display: flex; gap: 12px; flex-wrap: wrap; }
+        .links a {
+            display: inline-flex; align-items: center; gap: 6px;
+            color: var(--accent); text-decoration: none;
+            font-size: 0.85rem; font-family: var(--heading-font);
+            border: 1px solid rgba(88,166,255,0.3);
+            padding: 5px 14px; border-radius: 6px;
+            transition: background 0.2s;
         }
+        .links a:hover { background: rgba(88,166,255,0.1); }
 
+        /* ── SKILLS GRID ── */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px;
         }
 
         .skill-card {
-            background: #f9fafb;
-            border: 1px solid #e5e7eb;
+            background: var(--surface2);
+            border: 1px solid var(--border);
             border-radius: 10px;
-            padding: 15px;
+            padding: 16px;
+            transition: border-color 0.2s;
         }
 
+        .skill-card:hover { border-color: rgba(88,166,255,0.4); }
+
+        .skill-card h3 {
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .skill-card p { font-size: 0.85rem; }
+
+        /* ── PROJECTS ── */
         .project-card {
-            background: #f9fafb;
-            border: 1px solid #e5e7eb;
+            background: var(--surface2);
+            border: 1px solid var(--border);
             border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 16px;
+            padding: 18px;
+            margin-bottom: 14px;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .project-card:hover { border-color: rgba(88,166,255,0.4); transform: translateX(4px); }
+
+        .project-card h3 { font-size: 0.92rem; margin-bottom: 6px; }
+
+        .project-card .tag {
+            display: inline-block;
+            background: rgba(88,166,255,0.1);
+            color: var(--accent);
+            font-size: 0.72rem;
+            font-family: var(--heading-font);
+            padding: 2px 9px;
+            border-radius: 4px;
+            margin: 2px 2px 8px 0;
         }
 
         .project-card a {
-            color: #0077cc;
-            text-decoration: none;
-            font-weight: bold;
+            display: inline-flex; align-items: center; gap: 5px;
+            color: var(--accent); font-size: 0.8rem;
+            text-decoration: none; font-family: var(--heading-font);
+            font-weight: 600;
         }
 
-        .project-card a:hover {
-            text-decoration: underline;
+        .project-card a:hover { text-decoration: underline; }
+
+        /* ── CERTIFICATIONS ── */
+        .cert-list { list-style: none; padding: 0; }
+        .cert-list li {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 14px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            transition: border-color 0.2s;
+        }
+        .cert-list li:hover { border-color: rgba(88,166,255,0.4); }
+        .cert-icon { font-size: 1rem; flex-shrink: 0; }
+        .cert-list a {
+            color: var(--accent); text-decoration: none;
+            font-size: 0.88rem; font-weight: 500;
+        }
+        .cert-list a:hover { text-decoration: underline; }
+
+        /* ── FUN FACTS ── */
+        .fun-facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 14px;
         }
 
-        .links a {
-            color: #0077cc;
-            text-decoration: none;
-            font-weight: bold;
-            margin-right: 15px;
+        .fun-card {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 18px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.25s, border-color 0.25s;
+            cursor: default;
         }
 
-        .links a:hover {
-            text-decoration: underline;
+        .fun-card:hover { transform: translateY(-4px); }
+        .fun-card:nth-child(1):hover { border-color: #f78166; }
+        .fun-card:nth-child(2):hover { border-color: #ffa657; }
+        .fun-card:nth-child(3):hover { border-color: #58a6ff; }
+        .fun-card:nth-child(4):hover { border-color: #3fb950; }
+        .fun-card:nth-child(5):hover { border-color: #d2a8ff; }
+        .fun-card:nth-child(6):hover { border-color: #79c0ff; }
+
+        .fun-card .bg-icon {
+            position: absolute;
+            right: -8px; bottom: -10px;
+            font-size: 4.5rem;
+            opacity: 0.06;
+            pointer-events: none;
+            line-height: 1;
         }
 
+        .fun-card .fun-label {
+            font-family: var(--heading-font);
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        .fun-card .fun-headline {
+            font-family: var(--heading-font);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .fun-card:nth-child(1) .fun-headline { color: #f78166; }
+        .fun-card:nth-child(2) .fun-headline { color: #ffa657; }
+        .fun-card:nth-child(3) .fun-headline { color: #58a6ff; }
+        .fun-card:nth-child(4) .fun-headline { color: #3fb950; }
+        .fun-card:nth-child(5) .fun-headline { color: #d2a8ff; }
+        .fun-card:nth-child(6) .fun-headline { color: #79c0ff; }
+
+        .fun-card .fun-body {
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        /* ── FOOTER ── */
         footer {
             text-align: center;
-            padding: 15px;
-            background: #1f2937;
-            color: white;
-            margin-top: 30px;
+            padding: 20px;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+            font-family: var(--heading-font);
+            font-size: 0.78rem;
+            color: var(--muted);
         }
 
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.6rem;
-            }
-
-            #banner {
-                height: 220px;
-            }
-
-            section {
-                margin: 18px 12px;
-                padding: 18px;
-            }
+        @media (max-width: 600px) {
+            header { padding: 40px 16px 36px; }
+            section { margin: 18px 12px; padding: 20px 18px; }
+            .skills-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+
+    <!-- ─── HEADER ─── -->
     <header>
-        <h1>Hi, I'm Kabbil</h1>
-        <p>Site Reliability Engineer | Linux | Automation | Cloud</p>
+        <div class="header-badge">available for new opportunities</div>
+        <h1>kabbil<span class="cursor"></span></h1>
+        <p class="header-sub">
+            <span>SRE</span>
+            <span class="sep">|</span>
+            Linux Admin
+            <span class="sep">|</span>
+            Automation
+            <span class="sep">|</span>
+            Cloud Ops
+        </p>
+
+        <!-- Tech logo pills using inline SVGs -->
+        <div class="tech-logos">
+
+            <!-- Linux penguin -->
+            <div class="tech-pill">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#ffa657"><path d="M12.5 2C9.7 2 7 4.3 7 7.5v2.2C5.8 10.3 5 11.5 5 13c0 1.1.4 2 1 2.7V17c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-1.3c.6-.7 1-1.6 1-2.7 0-1.5-.8-2.7-2-3.3V7.5C17 4.3 15.3 2 12.5 2zm-2 10a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm4 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
+                Linux
+            </div>
+
+            <!-- Ansible -->
+            <div class="tech-pill">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#f78166"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.93l-5-7.43 1.64-1.1L13 14.28V7h2v9.93z"/></svg>
+                Ansible
+            </div>
+
+            <!-- Docker whale -->
+            <div class="tech-pill">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#58a6ff"><path d="M13 9h-2V7h2v2zm2-2h-2v2h2V7zM9 9H7V7h2v2zm2-4H9v2h2V5zM9 5H7v2h2V5zm6 4h-2v2h2V9zm2 0h-2v2h2V9zm-8 0H7v2h2V9zm14 2s-1-1-3-1c-.5-2-2.5-3-2.5-3S16 9 14 9H4c0 3 2 5 5 5h.5c.5 1 1.5 2 3.5 2 2.5 0 3.5-2 3.5-2H19c2 0 4-2 4-4z"/></svg>
+                Docker
+            </div>
+
+            <!-- Azure -->
+            <div class="tech-pill">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#58a6ff"><path d="M5.483 21.3H0l10.055-17.6 3.274 5.893-5.936 6.94 7.73 4.767H5.483zm5.24-17.6L7.17 9.267l9.694 11.233H24L10.723 3.7z"/></svg>
+                Azure
+            </div>
+
+            <!-- Python -->
+            <div class="tech-pill">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#ffa657"><path d="M11.9 2c-3.1 0-2.9 1.35-2.9 1.35V4.7h2.96v.4H6.75S4 4.8 4 8c0 3.25 1.79 3.13 1.79 3.13H6.9v-1.5s-.07-1.8 1.77-1.8h3.06s1.7.03 1.7-1.64V3.68S13.7 2 11.9 2zm-1.6 1.04c.3 0 .55.24.55.54s-.25.55-.55.55a.55.55 0 0 1-.55-.55c0-.3.25-.54.55-.54zM12.1 22c3.1 0 2.9-1.35 2.9-1.35V19.3h-2.96v-.4h5.21S20 19.2 20 16c0-3.25-1.79-3.13-1.79-3.13H17.1v1.5s.07 1.8-1.77 1.8h-3.06s-1.7-.03-1.7 1.64v2.81S10.3 22 12.1 22zm1.6-1.04a.55.55 0 0 1-.55-.54c0-.3.25-.55.55-.55.3 0 .55.25.55.55s-.25.54-.55.54z"/></svg>
+                Python
+            </div>
+
+            <!-- Bash shell -->
+            <div class="tech-pill">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#3fb950"><path d="M2 5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5zm5 6l3-3-3-3-1.41 1.41L7.17 11 5.6 12.59 7 14l5-5-5-5-1 1zm6 2h4v-2h-4v2z"/></svg>
+                Bash
+            </div>
+
+            <!-- Jenkins CI -->
+            <div class="tech-pill">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#d2a8ff"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+                Jenkins
+            </div>
+
+            <!-- Zabbix / monitoring -->
+            <div class="tech-pill">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#f78166"><path d="M3 3h18v2H3V3zm0 8h18v2H3v-2zm0 8h18v2H3v-2zM3 7h12v2H3V7zm0 8h8v2H3v-2z"/></svg>
+                Zabbix
+            </div>
+
+        </div>
     </header>
 
     <img id="banner" src="banner.jpg" alt="Banner Image">
 
+    <!-- ─── ABOUT ─── -->
     <section>
-        <h2>About Me</h2>
+        <h2><span class="h2-icon">~</span> about_me.md</h2>
         <p>
-            I am a Site Reliability Engineer and Linux Administrator with hands-on experience in 
+            I am a <b>Site Reliability Engineer and Linux Administrator</b> with hands-on experience in
             production support, system reliability, infrastructure automation, and operational troubleshooting.
         </p>
         <p>
@@ -183,43 +478,51 @@
             and strengthening system stability across Linux and cloud environments.
         </p>
         <p>
-            I work with <b>Linux</b>, <b>Ansible</b>, <b>Bash</b>, <b>Python</b>, <b>Docker</b>, and <b>CI/CD pipelines</b>,
+            I work with <b>Linux</b>, <b>Ansible</b>, <b>Bash</b>, <b>Python</b>, <b>Docker</b>, <b>Kubernetes</b>, and <b>CI/CD pipelines</b>,
             with growing exposure to <b>SRE</b>, <b>DevOps</b>, and <b>cloud operations</b>.
         </p>
-        <p class="links">
-            <a href="https://www.linkedin.com/in/kabbil" target="_blank">LinkedIn</a>
-            <a href="https://github.com/kabbilkarthi" target="_blank">GitHub</a>
-        </p>
-        <p>
-            <a href="Kabbil_GI_Resume.pdf" class="btn" download="Kabbil_GI_Resume.pdf">Download My Resume</a>
-        </p>
+        <div class="links">
+            <a href="https://www.linkedin.com/in/kabbil" target="_blank">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                LinkedIn
+            </a>
+            <a href="https://github.com/kabbilkarthi" target="_blank">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                GitHub
+            </a>
+        </div>
+        <a href="Resume-kabbil.pdf" class="btn green" download="Resume-kabbil.pdf">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            Download Resume
+        </a>
     </section>
 
+    <!-- ─── FEATURED PROJECT ─── -->
     <section class="highlight">
-        <h2>Featured Project</h2>
+        <h2><span class="h2-icon">★</span> featured_project</h2>
         <h3>Centralized Infrastructure Provisioning using PXE, Kickstart, Local Repositories, and Ansible Pull</h3>
         <p>
             Built a centralized provisioning workflow inspired by enterprise deployment models, where multiple systems
             can be installed and configured automatically from a single control node.
         </p>
         <p>
-            This project uses <b>PXE Boot</b> for network-based OS installation, <b>Kickstart</b> for unattended deployment,
+            Uses <b>PXE Boot</b> for network-based OS installation, <b>Kickstart</b> for unattended deployment,
             <b>local HTTP repositories</b> for controlled package access, and <b>Ansible Pull</b> for post-install configuration.
         </p>
         <p>
-            It helped reduce manual provisioning effort and enabled <b>consistent, repeatable, and scalable infrastructure deployment workflows</b>
+            Reduced manual provisioning effort and enabled <b>consistent, repeatable, and scalable infrastructure deployment</b>
             across lab systems running <b>RHEL 8.3</b> and <b>RHEL 10</b>.
         </p>
-        <p>
-            <b>Tech Stack:</b> RHEL 8/10, PXE, DHCP, TFTP, Kickstart, HTTP Repo, Ansible Pull, Bash
-        </p>
-        <p>
-            <a href="https://github.com/kabbilkarthi/rhel-centralized-provisioning" target="_blank" class="btn">View Project on GitHub</a>
-        </p>
+        <p><b>Stack:</b> RHEL 8/10 · PXE · DHCP · TFTP · Kickstart · HTTP Repo · Ansible Pull · Bash</p>
+        <a href="https://github.com/kabbilkarthi/rhel-centralized-provisioning" target="_blank" class="btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            View on GitHub
+        </a>
     </section>
 
+    <!-- ─── SKILLS ─── -->
     <section>
-        <h2>Skills</h2>
+        <h2><span class="h2-icon">//</span> skills</h2>
         <div class="skills-grid">
             <div class="skill-card">
                 <h3>Operating Systems</h3>
@@ -238,14 +541,15 @@
                 <p>Docker, Jenkins, Azure DevOps Pipelines, Deployment Workflows</p>
             </div>
             <div class="skill-card">
-                <h3>Monitoring & Operations</h3>
+                <h3>Monitoring & Ops</h3>
                 <p>Zabbix, Incident Handling, RCA, System Reliability, High Availability</p>
             </div>
         </div>
     </section>
 
+    <!-- ─── FOCUS ─── -->
     <section>
-        <h2>What I Focus On</h2>
+        <h2><span class="h2-icon">></span> what_i_focus_on</h2>
         <ul>
             <li>Building reliable and stable Linux-based systems</li>
             <li>Automating repetitive infrastructure and operational tasks</li>
@@ -255,8 +559,9 @@
         </ul>
     </section>
 
+    <!-- ─── RECENT WORK ─── -->
     <section>
-        <h2>🆕 Recent Work</h2>
+        <h2><span class="h2-icon">↻</span> recent_work</h2>
         <ul>
             <li>Built a lab-based centralized provisioning setup using PXE Boot, Kickstart, and Ansible Pull</li>
             <li>Configured local repositories to support controlled package installation for RHEL systems</li>
@@ -265,92 +570,153 @@
         </ul>
     </section>
 
+    <!-- ─── PROJECTS ─── -->
     <section>
-        <h2>Projects</h2>
+        <h2><span class="h2-icon">{}</span> projects</h2>
 
         <div class="project-card">
             <h3>Centralized Infrastructure Provisioning Lab</h3>
-            <p>
-                Automated operating system deployment and post-install configuration using PXE Boot, Kickstart,
-                local repositories, and Ansible Pull in a centralized setup.
-            </p>
-            <p><b>Key Areas:</b> Linux, Provisioning, DHCP, TFTP, Automation, RHEL</p>
-            <a href="https://github.com/kabbilkarthi/rhel-centralized-provisioning" target="_blank">View Project</a>
+            <div>
+                <span class="tag">RHEL</span><span class="tag">PXE</span><span class="tag">Ansible</span><span class="tag">Kickstart</span><span class="tag">DHCP/TFTP</span>
+            </div>
+            <p>Automated OS deployment and post-install configuration using PXE Boot, Kickstart, local repos, and Ansible Pull.</p>
+            <a href="https://github.com/kabbilkarthi/rhel-centralized-provisioning" target="_blank">View project →</a>
         </div>
 
         <div class="project-card">
             <h3>Personal Portfolio Website</h3>
-            <p>
-                Built and maintained a personal portfolio website to showcase projects, certifications,
-                technical skills, and engineering work. Initially built with Flask and MySQL and later converted to a static site.
-            </p>
-            <p><b>Key Areas:</b> HTML, CSS, Flask, MySQL</p>
-            <a href="https://github.com/kabbilkarthi/Own_Website" target="_blank">View Project</a>
+            <div>
+                <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Flask</span><span class="tag">MySQL</span>
+            </div>
+            <p>Built and maintained a personal portfolio — originally Flask + MySQL, later converted to a static site.</p>
+            <a href="https://github.com/kabbilkarthi/Own_Website" target="_blank">View project →</a>
         </div>
 
         <div class="project-card">
             <h3>DevOps Project Using Jenkins Pipeline</h3>
-            <p>
-                Worked on CI/CD-based workflow automation using Jenkins pipelines to support repeatable build and deployment processes.
-            </p>
-            <p><b>Key Areas:</b> Jenkins, CI/CD, Automation</p>
-            <a href="https://github.com/kabbilkarthi/DevOps" target="_blank">View Project</a>
+            <div>
+                <span class="tag">Jenkins</span><span class="tag">CI/CD</span><span class="tag">Automation</span>
+            </div>
+            <p>CI/CD workflow automation using Jenkins pipelines for repeatable build and deployment processes.</p>
+            <a href="https://github.com/kabbilkarthi/DevOps" target="_blank">View project →</a>
         </div>
 
         <div class="project-card">
             <h3>Azure DevOps Project</h3>
-            <p>
-                Explored Azure-based DevOps workflows and deployment practices with focus on automation,
-                cloud operations, and release process understanding.
-            </p>
-            <p><b>Key Areas:</b> Azure, DevOps, Cloud</p>
-            <a href="https://github.com/kabbilkarthi/Azure-DevOps" target="_blank">View Project</a>
+            <div>
+                <span class="tag">Azure</span><span class="tag">DevOps</span><span class="tag">Cloud</span>
+            </div>
+            <p>Explored Azure-based DevOps workflows with focus on automation, cloud ops, and release processes.</p>
+            <a href="https://github.com/kabbilkarthi/Azure-DevOps" target="_blank">View project →</a>
         </div>
 
         <div class="project-card">
             <h3>Data Extraction & Manipulation Scripts</h3>
-            <p>
-                Built Python-based scripts for data extraction, processing, and routine task automation.
-            </p>
-            <p><b>Key Areas:</b> Python, Automation, Scripting</p>
-            <a href="https://github.com/kabbilkarthi/Python" target="_blank">View Project</a>
+            <div>
+                <span class="tag">Python</span><span class="tag">Automation</span><span class="tag">Scripting</span>
+            </div>
+            <p>Python-based scripts for data extraction, processing, and routine task automation.</p>
+            <a href="https://github.com/kabbilkarthi/Python" target="_blank">View project →</a>
         </div>
 
         <div class="project-card">
             <h3>NAS Share Mounting Script</h3>
-            <p>
-                Created a Linux automation script to simplify NAS share mounting and reduce repetitive manual steps.
-            </p>
-            <p><b>Key Areas:</b> Linux, Bash, Storage, Automation</p>
-            <a href="https://github.com/kabbilkarthi/linux/tree/main/NAS_Mount" target="_blank">View Project</a>
+            <div>
+                <span class="tag">Linux</span><span class="tag">Bash</span><span class="tag">Storage</span>
+            </div>
+            <p>Automation script to simplify NAS share mounting and reduce repetitive manual steps.</p>
+            <a href="https://github.com/kabbilkarthi/linux/tree/main/NAS_Mount" target="_blank">View project →</a>
         </div>
     </section>
 
+    <!-- ─── CERTIFICATIONS ─── -->
     <section>
-        <h2>Certifications</h2>
-        <ul>
-            <li><a href="https://learn.microsoft.com/en-us/users/kabbilgi-1299/credentials/certification/devops-engineer?tab=credentials-tab" target="_blank">Microsoft Certified: DevOps Engineer Expert</a></li>
-            <li><a href="https://www.credly.com/badges/f7cd4672-d21a-4971-84c5-f794cddb99f3/linked_in_profile" target="_blank">Red Hat Certified Engineer (RHCE)</a></li>
-            <li><a href="https://learn.microsoft.com/en-us/users/kabbilgi-1299/credentials/certification/azure-administrator?tab=credentials-tab" target="_blank">Microsoft Certified: Azure Administrator Associate</a></li>
-            <li><a href="http://credly.com/badges/98926449-21cb-4f9d-a9f1-d27259d52fb3/public_url" target="_blank">Red Hat Certified System Administrator (RHCSA)</a></li>
-            <li><a href="https://www.credly.com/badges/270052c3-e480-4695-958a-058bc049a75b?source=linked_in_profile" target="_blank">Microsoft Certified: Azure Fundamentals</a></li>
-            <li><a href="http://credly.com/badges/1afd523a-c7a4-4f10-92ec-09fc5b2af040/public_url" target="_blank">Microsoft Technology Associate: Python</a></li>
-            <li><a href="https://www.coursera.org/account/accomplishments/verify/HN9ENTQLEVF4" target="_blank">Code Yourself! Introduction to Programming</a></li>
+        <h2><span class="h2-icon">✓</span> certifications</h2>
+        <ul class="cert-list">
+            <li>
+                <span class="cert-icon">🏅</span>
+                <a href="https://learn.microsoft.com/en-us/users/kabbilgi-1299/credentials/certification/devops-engineer?tab=credentials-tab" target="_blank">Microsoft Certified: DevOps Engineer Expert</a>
+            </li>
+            <li>
+                <span class="cert-icon">🎖️</span>
+                <a href="https://www.credly.com/badges/f7cd4672-d21a-4971-84c5-f794cddb99f3/linked_in_profile" target="_blank">Red Hat Certified Engineer (RHCE)</a>
+            </li>
+            <li>
+                <span class="cert-icon">🏅</span>
+                <a href="https://learn.microsoft.com/en-us/users/kabbilgi-1299/credentials/certification/azure-administrator?tab=credentials-tab" target="_blank">Microsoft Certified: Azure Administrator Associate</a>
+            </li>
+            <li>
+                <span class="cert-icon">🎖️</span>
+                <a href="http://credly.com/badges/98926449-21cb-4f9d-a9f1-d27259d52fb3/public_url" target="_blank">Red Hat Certified System Administrator (RHCSA)</a>
+            </li>
+            <li>
+                <span class="cert-icon">📜</span>
+                <a href="https://www.credly.com/badges/270052c3-e480-4695-958a-058bc049a75b?source=linked_in_profile" target="_blank">Microsoft Certified: Azure Fundamentals</a>
+            </li>
+            <li>
+                <span class="cert-icon">📜</span>
+                <a href="http://credly.com/badges/1afd523a-c7a4-4f10-92ec-09fc5b2af040/public_url" target="_blank">Microsoft Technology Associate: Python</a>
+            </li>
+            <li>
+                <span class="cert-icon">📜</span>
+                <a href="https://www.coursera.org/account/accomplishments/verify/HN9ENTQLEVF4" target="_blank">Code Yourself! Introduction to Programming</a>
+            </li>
         </ul>
     </section>
 
+    <!-- ─── FUN FACTS (REDESIGNED) ─── -->
     <section>
-        <h2>Fun Facts</h2>
-        <ul>
-            <li>🕵️ I enjoy troubleshooting and debugging production-like issues</li>
-            <li>⌨️ I like automating repetitive work to make systems easier to manage</li>
-            <li>🛠️ I explore new Linux, cloud, and automation tools regularly</li>
-            <li>🐧 Linux is where I feel most comfortable working and learning</li>
-        </ul>
+        <h2><span class="h2-icon">!</span> fun_facts.json</h2>
+        <div class="fun-facts-grid">
+
+            <div class="fun-card">
+                <div class="bg-icon">🔥</div>
+                <div class="fun-label">debugging mode</div>
+                <div class="fun-headline">Production bugs? Bring it on.</div>
+                <div class="fun-body">Finds troubleshooting production-like issues more satisfying than any video game. The logs never lie.</div>
+            </div>
+
+            <div class="fun-card">
+                <div class="bg-icon">⚡</div>
+                <div class="fun-label">automation obsession</div>
+                <div class="fun-headline">If I do it twice, I script it.</div>
+                <div class="fun-body">Repetitive tasks are the enemy. One good Bash script saves hours of future suffering — and it's oddly satisfying.</div>
+            </div>
+
+            <div class="fun-card">
+                <div class="bg-icon">🐧</div>
+                <div class="fun-label">home environment</div>
+                <div class="fun-headline">Linux is where I live.</div>
+                <div class="fun-body">The terminal is comfort. Whether it's RHEL, AlmaLinux, or a fresh install — feels like home within minutes.</div>
+            </div>
+
+            <div class="fun-card">
+                <div class="bg-icon">🛠️</div>
+                <div class="fun-label">always tinkering</div>
+                <div class="fun-headline">Lab > Boredom.</div>
+                <div class="fun-body">Spare time usually means spinning up a new lab, testing a tool, or wiring up something that definitely didn't need to be automated — but was.</div>
+            </div>
+
+            <div class="fun-card">
+                <div class="bg-icon">🌐</div>
+                <div class="fun-label">cloud curiosity</div>
+                <div class="fun-headline">Azure, AWS… what's next?</div>
+                <div class="fun-body">Certified in Azure and constantly pushing further into cloud-native practices. Every new service is a puzzle worth solving.</div>
+            </div>
+
+            <div class="fun-card">
+                <div class="bg-icon">📡</div>
+                <div class="fun-label">sre mindset</div>
+                <div class="fun-headline">99.9% uptime isn't a goal — it's a floor.</div>
+                <div class="fun-body">Reliability is a discipline. Monitoring, RCA, runbooks — the boring stuff is what keeps systems alive at 3 AM.</div>
+            </div>
+
+        </div>
     </section>
 
     <footer>
-        <p>© 2026 Kabbil | Built with HTML & CSS</p>
+        <p>© 2026 Kabbil &nbsp;·&nbsp; Built with HTML & CSS &nbsp;·&nbsp; Always be automating.</p>
     </footer>
+
 </body>
 </html>
